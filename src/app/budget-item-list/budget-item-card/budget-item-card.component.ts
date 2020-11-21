@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { BudgetItem } from '../../shared/budget-item';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { BudgetItem } from 'src/app/shared/budget-item';
 
 @Component({
   selector: 'app-budget-item-card',
@@ -8,18 +8,16 @@ import { BudgetItem } from '../../shared/budget-item';
 })
 export class BudgetItemCardComponent implements OnInit {
 
-  // Input Data for our budget item
   @Input() item: BudgetItem | any;
 
-  // Outputs for the xButton(deleting the card) and cardClick action(updating the card)
-  
+  @Output() xButtonClick: EventEmitter<any> = new EventEmitter<any>();
+
   @Output() cardClick: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor() { }
-
+  
   onXButtonClick(){
     // Send signal to the x button to delete the card
-    this.xButtonClick.emit()
+    this.xButtonClick.emit();
   }
 
   onCardClick(){
